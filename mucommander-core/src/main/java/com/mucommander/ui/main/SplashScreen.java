@@ -144,25 +144,7 @@ public class SplashScreen extends JWindow {
         g.setColor(TEXT_COLOR);
         g.drawString(loadingMessage, textX, textY);
         
-        //Display Name
-        g.setFont(nameFont); 
-      
-        textX = getWidth();
-        textY = getHeight();
-      
-        
-      g.setColor(SHADOW_TEXT_COLOR);
-      g.drawString("LUKE PTOMEY", 100, 35);
-      
-      g.setColor(TEXT_COLOR);
-      g.drawString("LUKE PTOMEY", 101, 36);
-      
-      try {
-		TimeUnit.SECONDS.sleep(10);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+  
 
         // Display version in the top right corner
       	g.setFont(customFont);
@@ -178,5 +160,25 @@ public class SplashScreen extends JWindow {
 
         g.setColor(TEXT_COLOR);
         g.drawString(version, textX, textY);
+        
+        //Display Name
+        g.setFont(nameFont); 
+      
+        textX = getWidth();
+        textY = getHeight();
+      
+        
+      g.setColor(SHADOW_TEXT_COLOR);
+      g.drawString("LUKE PTOMEY", 100, 35);
+      
+      g.setColor(TEXT_COLOR);
+      g.drawString("LUKE PTOMEY", 101, 36);
+      
+      try {
+		TimeUnit.SECONDS.sleep(5);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
 }
