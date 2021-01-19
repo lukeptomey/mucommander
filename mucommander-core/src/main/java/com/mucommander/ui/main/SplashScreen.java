@@ -23,6 +23,7 @@ import com.mucommander.ui.icon.IconManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -44,6 +45,7 @@ public class SplashScreen extends JWindow {
 
     /** Font used to display version and loading message on this splash screen */
     private Font customFont;
+    private Font nameFont;
 
     /** Path to the splash screen logo image within the JAR file */
     private final static String SPLASH_IMAGE_PATH = IconManager.getIconSetFolder(IconManager.MUCOMMANDER_ICON_SET)+"splash.png";
@@ -77,12 +79,13 @@ public class SplashScreen extends JWindow {
      * @param version muCommander version string which will be displayed in the top right corner
      * @param loadingMessage initial loading message, displayed in the lower left corner
      */
-    public SplashScreen(String version, String loadingMessage) {
+    public SplashScreen(String version, String loadingMessage ) {
         this.version = version;
-        this.loadingMessage = loadingMessage;
+        this.loadingMessage = loadingMessage;        
 
         // Create a custom font
         this.customFont = new Font(FONT_NAME, FONT_STYLE, FONT_SIZE);
+        this. nameFont = new Font(FONT_NAME, FONT_STYLE, 25);
 
         // Resolve the URL of the splash logo image within the JAR file and create an ImageIcon
         // Note: DO NOT use IconManager to load the icon as it would trigger ConfigurationManager's initialization
@@ -129,7 +132,7 @@ public class SplashScreen extends JWindow {
     public void paint(Graphics g) {
         super.paint(g);
 
-        g.setFont(customFont);
+        g.setFont(customFont);      
 
         // Display loading message in the lower left corner
         int textX = LOADING_MSG_MARGIN_X;
@@ -140,8 +143,29 @@ public class SplashScreen extends JWindow {
 
         g.setColor(TEXT_COLOR);
         g.drawString(loadingMessage, textX, textY);
+        
+        //Display Name
+        g.setFont(nameFont); 
+      
+        textX = getWidth();
+        textY = getHeight();
+      
+        
+      g.setColor(SHADOW_TEXT_COLOR);
+      g.drawString("LUKE PTOMEY", 100, 35);
+      
+      g.setColor(TEXT_COLOR);
+      g.drawString("LUKE PTOMEY", 101, 36);
+      
+      try {
+		TimeUnit.SECONDS.sleep(10);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 
         // Display version in the top right corner
+      	g.setFont(customFont);
         // Get FontRenderContext instance to calculate text width and height
         java.awt.font.FontRenderContext fontRenderContext = ((Graphics2D)g).getFontRenderContext();
         java.awt.geom.Rectangle2D textBounds = new java.awt.font.TextLayout(version, customFont, fontRenderContext).getBounds();
